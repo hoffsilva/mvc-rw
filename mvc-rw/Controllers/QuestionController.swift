@@ -11,7 +11,19 @@ import UIKit
 class QuestionController: UIViewController {
     
     //MARK - Instance properties
-    public var questionGroup  = QuestionGroup.basicPhrases()
+    public var questionGroup: QuestionGroup! {
+        didSet {
+            navigationItem.title = questionGroup.title
+        }
+    }
+    
+    private lazy var questionIndexItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        item.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        navigationItem.rightBarButtonItem = item
+        return item
+    }()
+    
     //Index of displayed question
     public var questionIndex  = 0
     //number of correct aswers
@@ -41,6 +53,8 @@ class QuestionController: UIViewController {
         
         questionView.answerLabel.isHidden = true
         questionView.hintLabel.isHidden   = true
+        
+        questionIndexItem.title = String(questionIndex + 1) + "/" + String(questionGroup.questions.count)
     }
     
     //MARK - Actions
