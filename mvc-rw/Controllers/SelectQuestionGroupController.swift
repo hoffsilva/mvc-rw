@@ -27,6 +27,7 @@ class SelectQuestionGroupController: UIViewController {
             return
         }
         controller.questionGroup = selectedQuestionGroup
+        controller.questionControllerDelegate = self
     }
     
 }
@@ -56,5 +57,19 @@ extension SelectQuestionGroupController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+}
+
+//MARK - QuestionControllerDelegate
+
+extension SelectQuestionGroupController: QuestionControllerDelegate {
+    func questionViewController(_ controller: QuestionController, didCancel questionGroup: QuestionGroup, at questionIndex: Int) {
+        navigationController?.popToViewController(self, animated: true)
+    }
+    
+    func questionViewController(_ controller: QuestionController, didCancel questionGroup: QuestionGroup) {
+        navigationController?.popToViewController(self, animated: true)
+    }
+    
     
 }

@@ -18,6 +18,9 @@
 		C3E56F8921DE1354007632C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3E56F8821DE1354007632C4 /* Assets.xcassets */; };
 		C3E56F8B21DE3B77007632C4 /* SelectQuestionGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E56F8A21DE3B77007632C4 /* SelectQuestionGroupController.swift */; };
 		C3E56F8D21DE3D96007632C4 /* QuestionGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E56F8C21DE3D96007632C4 /* QuestionGroupView.swift */; };
+		C3E56F8F21DE7A7D007632C4 /* download.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C3E56F8E21DE7A7C007632C4 /* download.jpeg */; };
+		C3E56F9221DE7FB9007632C4 /* QuestionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E56F9121DE7FB9007632C4 /* QuestionStrategy.swift */; };
+		C3E56F9421DE80D5007632C4 /* SequentialQuestionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E56F9321DE80D5007632C4 /* SequentialQuestionStrategy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		C3E56F8821DE1354007632C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3E56F8A21DE3B77007632C4 /* SelectQuestionGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectQuestionGroupController.swift; sourceTree = "<group>"; };
 		C3E56F8C21DE3D96007632C4 /* QuestionGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionGroupView.swift; sourceTree = "<group>"; };
+		C3E56F8E21DE7A7C007632C4 /* download.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = download.jpeg; sourceTree = "<group>"; };
+		C3E56F9121DE7FB9007632C4 /* QuestionStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionStrategy.swift; sourceTree = "<group>"; };
+		C3E56F9321DE80D5007632C4 /* SequentialQuestionStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequentialQuestionStrategy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,7 @@
 				0BF4421121DD782B004AEDFB /* Controllers */,
 				0BF4421221DD7833004AEDFB /* Models */,
 				0BF4421421DD7852004AEDFB /* Resources */,
+				C3E56F9021DE7F3C007632C4 /* Strategies */,
 				0BF4421321DD7838004AEDFB /* Views */,
 			);
 			path = "mvc-rw";
@@ -118,8 +125,18 @@
 			children = (
 				0BF4420A21DD77AD004AEDFB /* Info.plist */,
 				C3E56F8821DE1354007632C4 /* Assets.xcassets */,
+				C3E56F8E21DE7A7C007632C4 /* download.jpeg */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C3E56F9021DE7F3C007632C4 /* Strategies */ = {
+			isa = PBXGroup;
+			children = (
+				C3E56F9121DE7FB9007632C4 /* QuestionStrategy.swift */,
+				C3E56F9321DE80D5007632C4 /* SequentialQuestionStrategy.swift */,
+			);
+			path = Strategies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BF4421E21DD7A83004AEDFB /* LaunchScreen.storyboard in Resources */,
+				C3E56F8F21DE7A7D007632C4 /* download.jpeg in Resources */,
 				C3E56F8921DE1354007632C4 /* Assets.xcassets in Resources */,
 				0BF4420421DD77AB004AEDFB /* Main.storyboard in Resources */,
 			);
@@ -193,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3E56F9421DE80D5007632C4 /* SequentialQuestionStrategy.swift in Sources */,
 				0BF4421621DD78F8004AEDFB /* Question.swift in Sources */,
 				0BF4420121DD77AB004AEDFB /* QuestionController.swift in Sources */,
 				C3E56F8D21DE3D96007632C4 /* QuestionGroupView.swift in Sources */,
@@ -200,6 +219,7 @@
 				0BF4421821DD7956004AEDFB /* QuestionGroup.swift in Sources */,
 				C3E56F8B21DE3B77007632C4 /* SelectQuestionGroupController.swift in Sources */,
 				0BF4422021DD7B51004AEDFB /* QuestionView.swift in Sources */,
+				C3E56F9221DE7FB9007632C4 /* QuestionStrategy.swift in Sources */,
 				0BF4421C21DD7A83004AEDFB /* QuestionGroupData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

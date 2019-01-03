@@ -8,9 +8,17 @@
 
 import UIKit
 
+//MARK - QuestionControllerDelegate
+
+protocol QuestionControllerDelegate: class {
+    func questionViewController(_ controller: QuestionController, didCancel questionGroup: QuestionGroup, at questionIndex: Int)
+    func questionViewController(_ controller: QuestionController, didCancel questionGroup: QuestionGroup)
+}
+
 class QuestionController: UIViewController {
     
     //MARK - Instance properties
+    public weak var questionControllerDelegate: QuestionControllerDelegate?
     public var questionGroup: QuestionGroup! {
         didSet {
             navigationItem.title = questionGroup.title
@@ -41,7 +49,9 @@ class QuestionController: UIViewController {
     //MARK - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCancelButton()
         showQuestion()
+        
     }
     
     private func showQuestion() {
@@ -55,6 +65,16 @@ class QuestionController: UIViewController {
         questionView.hintLabel.isHidden   = true
         
         questionIndexItem.title = String(questionIndex + 1) + "/" + String(questionGroup.questions.count)
+    }
+    
+    private func setupCancelButton() {
+        let action = #selector(handleCancelPressed(sender:))
+        let image = #imageLiteral(resourceName: "sas")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, landscapeImagePhone: nil, style: .plain, target: self, action: action)
+    }
+    
+    @objc private func handleCancelPressed(sender: UIBarButtonItem) {
+        questionControllerDelegate?.questionViewController(self, didCancel: questionGroup, at: questionIndex)
     }
     
     //MARK - Actions
@@ -83,9 +103,11 @@ class QuestionController: UIViewController {
     private func showNextQuestion() {
         questionIndex += 1
         guard questionIndex < questionGroup.questions.count else {
+            
             let alert = UIAlertController(title: "You answered all questions", message: "Do you want to restart the game?", preferredStyle: UIAlertController.Style.actionSheet)
             let reset = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) { (action) in
                 self.resetControllers()
+                self.questionControllerDelegate?.questionViewController(self, didCancel: self.questionGroup)
             }
             let dismiss = UIAlertAction(title: "No", style: .cancel, handler: nil)
             alert.addAction(reset)
