@@ -51,7 +51,7 @@ public class SequentialQuestionStrategy: QuestionStrategy {
     }
     
     public func questionIndexTitle() -> String {
-        return "\(questionIndex + 1)/" + "\(questionGroup.questions.count)
+        return String(questionIndex + 1) + "/" + String(questionGroup.questions.count)
     }
     
     

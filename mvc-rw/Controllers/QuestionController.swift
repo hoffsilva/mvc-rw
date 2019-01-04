@@ -69,7 +69,7 @@ class QuestionController: UIViewController {
     
     private func setupCancelButton() {
         let action = #selector(handleCancelPressed(sender:))
-        let image = #imageLiteral(resourceName: "sas")
+        let image = #imageLiteral(resourceName: "ic_menu")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, landscapeImagePhone: nil, style: .plain, target: self, action: action)
     }
     
