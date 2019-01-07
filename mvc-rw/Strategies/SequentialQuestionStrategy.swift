@@ -41,7 +41,7 @@ public class SequentialQuestionStrategy: QuestionStrategy {
     public func currentQuestion() -> Question {
         return questionGroup.questions[questionIndex]
     }
-    
+        
     public func markQuestionCorrect(question: Question) {
         correctCount += 1
     }

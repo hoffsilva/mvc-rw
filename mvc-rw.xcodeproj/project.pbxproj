@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B3C56FB21DFCDD500564DAE /* RandomQuestionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C56FA21DFCDD500564DAE /* RandomQuestionStrategy.swift */; };
 		0BF441FF21DD77AB004AEDFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF441FE21DD77AB004AEDFB /* AppDelegate.swift */; };
 		0BF4420121DD77AB004AEDFB /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF4420021DD77AB004AEDFB /* QuestionController.swift */; };
 		0BF4420421DD77AB004AEDFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF4420221DD77AB004AEDFB /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B3C56FA21DFCDD500564DAE /* RandomQuestionStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomQuestionStrategy.swift; sourceTree = "<group>"; };
 		0BF441FB21DD77AB004AEDFB /* mvc-rw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mvc-rw.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF441FE21DD77AB004AEDFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BF4420021DD77AB004AEDFB /* QuestionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				C3E56F9121DE7FB9007632C4 /* QuestionStrategy.swift */,
 				C3E56F9321DE80D5007632C4 /* SequentialQuestionStrategy.swift */,
+				0B3C56FA21DFCDD500564DAE /* RandomQuestionStrategy.swift */,
 			);
 			path = Strategies;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				C3E56F9421DE80D5007632C4 /* SequentialQuestionStrategy.swift in Sources */,
 				0BF4421621DD78F8004AEDFB /* Question.swift in Sources */,
 				0BF4420121DD77AB004AEDFB /* QuestionController.swift in Sources */,
+				0B3C56FB21DFCDD500564DAE /* RandomQuestionStrategy.swift in Sources */,
 				C3E56F8D21DE3D96007632C4 /* QuestionGroupView.swift in Sources */,
 				0BF441FF21DD77AB004AEDFB /* AppDelegate.swift in Sources */,
 				0BF4421821DD7956004AEDFB /* QuestionGroup.swift in Sources */,

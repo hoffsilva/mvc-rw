@@ -11,14 +11,19 @@ import UIKit
 //MARK - QuestionControllerDelegate
 
 protocol QuestionControllerDelegate: class {
-    func questionViewController(_ controller: QuestionController, didCancel questionGroup: QuestionGroup, at questionIndex: Int)
-    func questionViewController(_ controller: QuestionController, didCancel questionGroup: QuestionGroup)
+    func questionViewController(_ controller: QuestionController, didCancel questionGroup: QuestionStrategy, at questionIndex: Int)
+    func questionViewController(_ controller: QuestionController, didCancel questionGroup: QuestionStrategy)
 }
 
 class QuestionController: UIViewController {
     
     //MARK - Instance properties
     public weak var questionControllerDelegate: QuestionControllerDelegate?
+    public var questionStrategy: QuestionStrategy! {
+        didSet {
+            navigationItem.title = questionStrategy.title
+        }
+    }
     public var questionGroup: QuestionGroup! {
         didSet {
             navigationItem.title = questionGroup.title
@@ -55,7 +60,7 @@ class QuestionController: UIViewController {
     }
     
     private func showQuestion() {
-        let question = questionGroup.questions[questionIndex]
+        let question = questionStrategy.currentQuestion()
         
         questionView.answerLabel.text = question.answer
         questionView.promptLabel.text = question.prompt
@@ -64,7 +69,7 @@ class QuestionController: UIViewController {
         questionView.answerLabel.isHidden = true
         questionView.hintLabel.isHidden   = true
         
-        questionIndexItem.title = String(questionIndex + 1) + "/" + String(questionGroup.questions.count)
+        questionIndexItem.title = questionStrategy.questionIndexTitle()
     }
     
     private func setupCancelButton() {
@@ -74,7 +79,7 @@ class QuestionController: UIViewController {
     }
     
     @objc private func handleCancelPressed(sender: UIBarButtonItem) {
-        questionControllerDelegate?.questionViewController(self, didCancel: questionGroup, at: questionIndex)
+        questionControllerDelegate?.questionViewController(self, didCancel: questionStrategy, at: questionIndex)
     }
     
     //MARK - Actions
@@ -84,14 +89,16 @@ class QuestionController: UIViewController {
     }
     
     @IBAction func handleCorrect(_ sender: Any) {
-        correctCount += 1
-        updateCountLabels()
+        let question = questionStrategy.currentQuestion()
+        questionStrategy.markQuestionCorrect(question: question)
+        questionView.correctCountLabel.text = String(questionStrategy.correctCount)
         showNextQuestion()
     }
     
     @IBAction func handleIncorrect(_ sender: Any) {
-        incorrectCount += 1
-        updateCountLabels()
+        let question = questionStrategy.currentQuestion()
+        questionStrategy.markQuestionIncorrect(question: question)
+        questionView.incorrectCountLabel.text = String(questionStrategy.incorrectCount)
         showNextQuestion()
     }
     
@@ -101,18 +108,8 @@ class QuestionController: UIViewController {
     }
     
     private func showNextQuestion() {
-        questionIndex += 1
-        guard questionIndex < questionGroup.questions.count else {
-            
-            let alert = UIAlertController(title: "You answered all questions", message: "Do you want to restart the game?", preferredStyle: UIAlertController.Style.actionSheet)
-            let reset = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) { (action) in
-                self.resetControllers()
-                self.questionControllerDelegate?.questionViewController(self, didCancel: self.questionGroup)
-            }
-            let dismiss = UIAlertAction(title: "No", style: .cancel, handler: nil)
-            alert.addAction(reset)
-            alert.addAction(dismiss)
-            present(alert, animated: true, completion: nil)
+        guard questionStrategy.advanceToNextQuestion() else {
+            questionControllerDelegate?.questionViewController(self, didCancel: questionStrategy)
             return
         }
         showQuestion()
